@@ -20,5 +20,11 @@ public class PAC1Ex3Test {
         assertEquals(3.69,
                 PAC1Ex3.calculateTravelCostByMonth(myRoute, 5, 3.9, false));
     }
-
+    @Test
+    public void testcalculateTravelCosts() {
+        int[][] myRoute = {{2, 1, 2}, {2, 1, 2}};
+        int[] myMonths = {5, 5};
+        assertEquals(7.38,
+                PAC1Ex3.calculateTravelCosts(myRoute, myMonths, 3.9, false));
+    }
 }

@@ -92,7 +92,15 @@ public class PAC1Ex3 {
 
     public static double calculateTravelCosts(int[][] routes, int[] months, double litersPer100KM, boolean isGasoline) {
         //TODO
-        return 0;
+        double monthsTravelCosts = 0.00;
+        for (int month: months) {
+            for (int i=1; i< routes.length; i++) {
+                monthsTravelCosts += calculateTravelCostByMonth(routes[i], month, litersPer100KM, isGasoline);
+            }
+
+            //monthsTravelCosts += calculateTravelCostByMonth()
+        }
+        return monthsTravelCosts;
     }
 
     //public static boolean isGasolineCheaper(int[][] routes, int[] months, double litersPer100KMGasoline, double litersPer100KMDiesel) {
