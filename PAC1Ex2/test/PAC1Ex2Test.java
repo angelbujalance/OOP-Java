@@ -10,7 +10,12 @@ public class PAC1Ex2Test {
 
     @Test
     public void testTotalIncomeTaxVAT() {
-        assertEquals(11285, PAC1Ex2.totalIncomeTaxVAT(18500));
+        assertEquals(19055, PAC1Ex2.totalIncomeTaxVAT(18500));
     }
-
+    @Test
+    public void testinvoicesTotal() {
+        double[] invoicesTotalResult = { 52620.0, 22660.0 };
+        double[][] invoicesTotalInput = { { 1000.00, 2000.00, 50000.00 }, { 18000.00, 4000.00 } };
+        assertEquals(invoicesTotalResult, PAC1Ex2.invoicesTotal(invoicesTotalInput));
+    }
 }
