@@ -27,4 +27,13 @@ public class PAC1Ex3Test {
         assertEquals(7.38,
                 PAC1Ex3.calculateTravelCosts(myRoute, myMonths, 3.9, false));
     }
+    @Test
+    public void testIsGasolineCheaper() {
+        int[][] myRoute = {{2, 1, 2}, {2, 1, 2}};
+        int[] myMonths = {5, 5};
+        assertEquals(true,
+                PAC1Ex3.isGasolineCheaper(myRoute,myMonths,1, 100));
+        assertEquals(false,
+                PAC1Ex3.isGasolineCheaper(myRoute,myMonths,100, 1));
+    }
 }

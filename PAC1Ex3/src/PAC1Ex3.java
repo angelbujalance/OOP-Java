@@ -103,9 +103,14 @@ public class PAC1Ex3 {
         return monthsTravelCosts;
     }
 
-    //public static boolean isGasolineCheaper(int[][] routes, int[] months, double litersPer100KMGasoline, double litersPer100KMDiesel) {
+    public static boolean isGasolineCheaper(int[][] routes, int[] months, double litersPer100KMGasoline, double litersPer100KMDiesel) {
         //TODO
-    //    return ()0;
-    //}
-
+        double gasolineCost = calculateTravelCosts(routes, months, litersPer100KMGasoline, true);
+        double dieselCost = calculateTravelCosts(routes, months, litersPer100KMDiesel, false);
+        if (gasolineCost < dieselCost) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
