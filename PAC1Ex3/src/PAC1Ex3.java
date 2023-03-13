@@ -104,7 +104,6 @@ public class PAC1Ex3 {
     }
 
     public static boolean isGasolineCheaper(int[][] routes, int[] months, double litersPer100KMGasoline, double litersPer100KMDiesel) {
-        //TODO
         double gasolineCost = calculateTravelCosts(routes, months, litersPer100KMGasoline, true);
         double dieselCost = calculateTravelCosts(routes, months, litersPer100KMDiesel, false);
         if (gasolineCost < dieselCost) {
