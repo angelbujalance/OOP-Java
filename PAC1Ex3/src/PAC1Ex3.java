@@ -106,6 +106,7 @@ public class PAC1Ex3 {
         //suma total de trayectos en distintos meses
         double monthsTravelCosts = 0.00;
         for (int month: months) {
+            //calculo de los costes para cada mes
             for (int i=1; i< routes.length; i++) {
                 monthsTravelCosts += calculateTravelCostByMonth(routes[i], month,
                         litersPer100KM, isGasoline);
@@ -117,6 +118,7 @@ public class PAC1Ex3 {
     public static boolean isGasolineCheaper(int[][] routes, int[] months,
                                             double litersPer100KMGasoline,
                                             double litersPer100KMDiesel) {
+        //calcula con que carburante habrian sido mas baratos los trayectos
         double gasolineCost = calculateTravelCosts(routes, months,
                 litersPer100KMGasoline, true);
         double dieselCost = calculateTravelCosts(routes, months,
