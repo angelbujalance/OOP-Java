@@ -42,14 +42,17 @@ public class PAC1Ex3 {
     };
 
     public static int calculateTravelledDistance(int[] route) {
+        //calcula la distancia total de un recorrido entre ciudades
         int[] indexSorted = route.clone();
         Arrays.sort(indexSorted);
         if (route.length == 0) {
+            //si no hay ruta
             System.out.println("[ERROR]: The route is empty");
             return 0;
         }
 
         else if (indexSorted[0] < 0 || indexSorted[route.length-1] > distanceMatrix.length) {
+            //si los destinos de la ruta son invalidos
             System.out.println("[ERROR]: The route contains invalid destination points");
             return -1;
         }
@@ -66,50 +69,58 @@ public class PAC1Ex3 {
         }
     }
 
-    public static double calculateTravelCostByMonth(int[] route, int month, double litersPer100KM, boolean isGasoline) {
+    public static double calculateTravelCostByMonth(int[] route, int month,
+                                                    double litersPer100KM,
+                                                    boolean isGasoline) {
+        //calcula el coste de combustible
         if (month < 0 | month > 11) {
+            //si el mes está fuera de rango
             System.out.println("[ERROR]:Invalid month");
             return -1;
         }
         else if (litersPer100KM <= 0) {
+            //si el consumo de carburante es negativo
             System.out.println("[ERROR]: Invalid litersPer100KM value");
             return -1;
         }
         else {
+            //calculo de los litros consumidos en un mes
             int distanceTraveled = calculateTravelledDistance(route);
             float litersPerKM = (float) litersPer100KM/100;
             float litersMonth = distanceTraveled*litersPerKM;
-            if (isGasoline == true) {
-                double TravelCostByMonth = Math.round((GASOLINE[month] * litersMonth)*100.00)/100.00;
-                return TravelCostByMonth;
+            if (isGasoline) {
+                //si el vehiculo es de gasolina
+                //double TravelCostByMonth = Math.round((GASOLINE[month] * litersMonth)*100.00)/100.00;
+                return Math.round((GASOLINE[month] * litersMonth)*100.00)/100.00;
             }
             else {
-                double TravelCostByMonth = Math.round((DIESEL[month] * litersMonth)*100.00)/100.00;
-                return TravelCostByMonth;
+                //si el vehiculo es diesel
+                //double TravelCostByMonth = Math.round((DIESEL[month] * litersMonth)*100.00)/100.00;
+                return Math.round((DIESEL[month] * litersMonth)*100.00)/100.00;
             }
         }
     }
 
-    public static double calculateTravelCosts(int[][] routes, int[] months, double litersPer100KM, boolean isGasoline) {
-        //TODO
+    public static double calculateTravelCosts(int[][] routes, int[] months,
+                                              double litersPer100KM, boolean isGasoline) {
+        //suma total de trayectos en distintos meses
         double monthsTravelCosts = 0.00;
         for (int month: months) {
             for (int i=1; i< routes.length; i++) {
-                monthsTravelCosts += calculateTravelCostByMonth(routes[i], month, litersPer100KM, isGasoline);
+                monthsTravelCosts += calculateTravelCostByMonth(routes[i], month,
+                        litersPer100KM, isGasoline);
             }
-
-            //monthsTravelCosts += calculateTravelCostByMonth()
         }
         return monthsTravelCosts;
     }
 
-    public static boolean isGasolineCheaper(int[][] routes, int[] months, double litersPer100KMGasoline, double litersPer100KMDiesel) {
-        double gasolineCost = calculateTravelCosts(routes, months, litersPer100KMGasoline, true);
-        double dieselCost = calculateTravelCosts(routes, months, litersPer100KMDiesel, false);
-        if (gasolineCost < dieselCost) {
-            return true;
-        } else {
-            return false;
-        }
+    public static boolean isGasolineCheaper(int[][] routes, int[] months,
+                                            double litersPer100KMGasoline,
+                                            double litersPer100KMDiesel) {
+        double gasolineCost = calculateTravelCosts(routes, months,
+                litersPer100KMGasoline, true);
+        double dieselCost = calculateTravelCosts(routes, months,
+                litersPer100KMDiesel, false);
+        return gasolineCost < dieselCost;
     }
 }
